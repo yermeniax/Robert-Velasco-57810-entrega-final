@@ -12,3 +12,7 @@ FutbolApp es una aplicación web creada para gestionar la información relaciona
 - **Gestión de profesores**: Visualización y administración de profesores.
 - **Gestión de jugadores**: Visualización, modificación, adición y eliminación de jugadores.
 - **Gestión de pagos**: Visualización y administración de pagos.
+
+## Usuarios
+- **Usuario Administrador**: admin **Password**: admin01
+- **Usuario**: prueba **Password**: Portugal*2025*
