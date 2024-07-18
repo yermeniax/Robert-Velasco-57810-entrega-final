@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Profesores</title>
+    <style>
+        body {
+            background-image: url('/static/assets/img/dt2.jpg'); 
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 60px;
+        }
+
+        table {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            margin-top: 20px;
+            color: white;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid white;
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container a, .button-container button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .button-container a:hover, .button-container button:hover {
+            background-color: #005f73;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .action-buttons a, .action-buttons form button {
+            background-color: #008CBA; /* Color para los botones de modificar */
+            margin: 2px;
+            padding: 10px 10px; /* Ajustar tamaño de los botones */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .action-buttons form button {
+            background-color: #dc3545; /* Color para los botones de eliminar */
+        }
+
+        .action-buttons a:hover, .action-buttons form button:hover {
+            background-color: #008CBA; /* Color hover para los botones de modificar */
+        }
+
+        .action-buttons form button:hover {
+            background-color: #c82333; /* Color hover para los botones de eliminar */
+        }
+    </style>
+</head>
+<body>
+    <h1>Entrenadores Registrados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Nacionalidad</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Categoría</th>
+                <th>Fecha de Contratación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesor in profesores %}
+                <tr>
+                    <td>{{ profesor.nombre }}</td>
+                    <td>{{ profesor.apellido }}</td>
+                    <td>{{ profesor.dni }}</td>
+                    <td>{{ profesor.fecha_nacimiento|date:"d/m/Y" }}</td>
+                    <td>{{ profesor.nacionalidad }}</td>
+                    <td>{{ profesor.telefono }}</td>
+                    <td>{{ profesor.email }}</td>
+                    <td>{{ profesor.categoria }}</td>
+                    <td>{{ profesor.fecha_contratacion|date:"d/m/Y" }}</td>
+                    <td class="action-buttons">
+                        <a href="{% url 'modificar_profesor' profesor.id %}">Modificar</a>
+                        <form action="{% url 'eliminar_profesor' profesor.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="button-container">
+        <a href="{% url 'agregar_profesor' %}">Registrar Nuevo Profesor</a>
+        <a href="{% url 'dashboard' %}">Volver al Dashboard</a>        
+    </div>
+</body>
+</html>
+

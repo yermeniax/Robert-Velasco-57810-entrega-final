@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Pago</title>
+    <style>
+        body {
+            background-image: url('/static/assets/img/pagos.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        select,
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .button-container {
+            text-align: right;
+            margin-top: 20px;
+        }
+        button, .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 10px; /* Espacio entre botones */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            background-color: #6c757d; /* Botón gris */
+        }
+        .btn-danger {
+            background-color: #dc3545; /* Botón rojo */
+        }
+        .btn:hover {
+            background-color: #5a6268; /* Color gris más oscuro al pasar el mouse */
+        }
+        .btn-danger:hover {
+            background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Modificar Pago</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div>
+                <label for="jugador">Jugador:</label>
+                {{ form.jugador }}
+            </div>
+            <div>
+                <label for="equipo">Equipo:</label>
+                {{ form.equipo }}
+            </div>
+            <div>
+                <label for="tipo_pago">Tipo de Pago:</label>
+                {{ form.tipo_pago }}
+            </div>
+            <div>
+                <label for="monto">Monto:</label>
+                {{ form.monto }}
+            </div>
+            <div>
+                <label for="fecha_pago">Fecha de Pago:</label>
+                {{ form.fecha_pago }}
+            </div>
+            <div>
+                <label for="mes">Mes:</label>
+                {{ form.mes }}
+            </div>
+            <div class="button-container">
+                <button type="submit">Guardar Cambios</button>
+                <a href="{% url 'pagos' %}" class="btn">Cancelar</a>
+                <a href="{% url 'eliminar_pago' form.instance.pk %}" class="btn btn-danger">Eliminar Pago</a>                
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

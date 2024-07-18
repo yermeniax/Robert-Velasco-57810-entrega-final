@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Pago</title>
+    <style>
+        body {
+            background-image: url('/static/assets/img/pagos.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin-top: 15px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            margin-top: 5px;
+        }
+        input, select {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .button-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-container button, .button-container a {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 10px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+        .button-container a {
+            text-align: center;
+        }
+        .button-container button:hover, .button-container a:hover {
+            background-color: #005f6a;
+        }
+        .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-field label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agregar Pago</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="id_jugador">Jugador</label>
+                {{ form.jugador }}
+            </div>
+            <div class="form-field">
+                <label for="id_equipo">Equipo</label>
+                {{ form.equipo }}
+            </div>
+            <div class="form-field">
+                <label for="id_tipo_pago">Tipo de Pago</label>
+                {{ form.tipo_pago }}
+            </div>
+            <div class="form-field">
+                <label for="id_monto">Monto</label>
+                {{ form.monto }}
+            </div>
+            <div class="form-field">
+                <label for="id_fecha_pago">Fecha de Pago</label>
+                {{ form.fecha_pago }}
+            </div>
+            <div class="form-field">
+                <label for="id_mes">Mes Cancelado</label>
+                {{ form.mes }}
+            </div>
+            <div class="button-container">
+                <button type="submit">Agregar</button>
+                <a href="{% url 'pagos' %}">Volver a Pagos</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

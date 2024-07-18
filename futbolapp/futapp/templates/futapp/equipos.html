@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Equipos</title>
+    <style>
+        body {
+            background-image: url('/static/assets/img/cancha.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #008CBA;
+            color: white;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+<body>
+    <h1>Equipos Registrados</h1>
+    <ul>
+        {% for equipo in equipos %}
+            <li>{{ equipo.nombre }} - {{ equipo.ciudad }} - {{ equipo.estadio }}</li>
+        {% endfor %}
+    </ul>
+    <div class="button-container">
+        <a href="{% url 'dashboard' %}" class="btn">Volver al Dashboard</a>
+    </div>
+</body>
+</html>

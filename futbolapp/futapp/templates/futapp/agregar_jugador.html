@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Jugador</title>
+    <style>
+        body {
+            background-image: url('/static/assets/img/jugador.jpg');
+            background-size: cover;
+            background-position: center center;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form .button-container {
+            grid-column: span 3; /* Ajusta el ancho del contenedor */
+            display: flex;
+            justify-content: space-between; /* Alinea los botones a cada extremo */
+            margin-top: 20px;
+        }
+
+        form .button-container button, form .button-container a {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            border: none; /* Asegura que no haya borde */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            width: 250px; /* Ajusta el ancho del botón */
+        }
+
+        form .button-container button:hover, form .button-container a:hover {
+            background-color: #008CBA;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agregar Jugador</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_nombre">Nombre:</label>
+            {{ form.nombre }}
+        </div>
+        <div>
+            <label for="id_apellido">Apellido:</label>
+            {{ form.apellido }}
+        </div>
+        <div>
+            <label for="id_edad">Edad:</label>
+            {{ form.edad }}
+        </div>
+        <div>
+            <label for="id_equipo">Equipo:</label>
+            {{ form.equipo }}
+        </div>
+        <div>
+            <label for="id_posicion">Posición:</label>
+            {{ form.posicion }}
+        </div>
+        <div>
+            <label for="id_numero_camiseta">Número de Camiseta:</label>
+            {{ form.numero_camiseta }}
+        </div>
+        <div>
+            <label for="id_fecha_nacimiento">Fecha de Nacimiento:</label>
+            {{ form.fecha_nacimiento }}
+        </div>
+        <div>
+            <label for="id_nacionalidad">Nacionalidad:</label>
+            {{ form.nacionalidad }}
+        </div>
+        <div>
+            <label for="id_dni">DNI:</label>
+            {{ form.dni }}
+        </div>
+        <div>
+            <label for="id_profesor">Profesor:</label>
+            {{ form.profesor }}
+        </div>
+
+        <div class="button-container">
+            <button type="submit">Agregar</button>
+            <a href="{% url 'jugadores' %}">Volver a Jugadores</a>
+        </div>
+    </form>
+</body>
+</html>
+
+

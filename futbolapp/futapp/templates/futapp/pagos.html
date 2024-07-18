@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Pagos</title>
+    <style>
+        body {
+            background-image: url('/static/assets/img/pagos.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 1000px;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #555;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        tr:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .button-container {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .button-container a {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .button-container a:hover {
+            background-color: #005f73;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .action-buttons a, .action-buttons form {
+            background-color: #008CBA;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 12px;
+            margin: 0 5px;
+        }
+        .action-buttons a:hover {
+            background-color: #005f73;
+        }
+        .action-buttons form {
+            background-color: #dc3545;
+        }
+        .action-buttons form button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .action-buttons form button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Listado de Pagos</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Jugador</th>
+                    <th>Equipo</th>
+                    <th>Tipo de Pago</th>
+                    <th>Monto</th>
+                    <th>Fecha de Pago</th>
+                    <th>Mes Cancelado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pago in pagos %}
+                <tr>
+                    <td>{{ pago.jugador }}</td>
+                    <td>{{ pago.equipo }}</td>
+                    <td>{{ pago.get_tipo_pago_display }}</td>
+                    <td>{{ pago.monto }}</td>
+                    <td>{{ pago.fecha_pago }}</td>
+                    <td>{{ pago.get_mes_display }}</td>
+                    <td class="action-buttons">
+                        <a href="{% url 'modificar_pago' pago.pk %}">Modificar</a>
+                        <form method="post" action="{% url 'eliminar_pago' pago.pk %}">
+                            {% csrf_token %}
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="button-container">
+            <a href="{% url 'agregar_pago' %}">Agregar Pago</a>
+            <a href="{% url 'dashboard' %}">Volver al Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
